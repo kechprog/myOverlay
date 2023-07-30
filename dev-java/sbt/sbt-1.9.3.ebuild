@@ -25,6 +25,9 @@ src_install() {
     insinto "${sbt_dir}"
     doins -r *
 
+    # Ensure the sbt script is executable
+    chmod +x "${D}${sbt_dir}/sbt" || die "Failed to set execute permissions on sbt script"
+
     # Symlink the sbt script to a location in the PATH
     dosym "${sbt_dir}/sbt" "/usr/bin/sbt"
 }
