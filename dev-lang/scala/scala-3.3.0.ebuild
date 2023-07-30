@@ -11,13 +11,14 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-DEPEND="virtual/jdk:1.8"
+DEPEND="virtual/jdk:1.8
+        dev-java/sbt"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/dotty-${PV}"
 
 src_compile() {
-    eant dist
+    ./sbt compile || die "sbt compile failed"
 }
 
 src_install() {
